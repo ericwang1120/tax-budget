@@ -1,6 +1,11 @@
 import React from "react";
-import Invoice from "./components/Invoices";
+import Loadable from "react-loadable";
+
+const Invoices = Loadable({
+  loader: () => import("./components/Invoices"),
+  loading: () => <div>Loading</div>
+});
 
 export default () => {
-  return <Invoice page="1" total="11" />;
+  return <Invoices page="1" total="11" />;
 };
