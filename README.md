@@ -6,7 +6,7 @@
 - [x] Integrate with ant design.
 - [x] Integrate with react-router.
 - [x] Lazy loading and best practices of react-router.
-- [ ] Confirm data structure
+- [x] Confirm data structure
 - [x] UI of list
 - [ ] UI of modal
 - [ ] Integrate with mobx.

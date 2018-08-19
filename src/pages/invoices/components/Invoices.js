@@ -1,42 +1,34 @@
 import React from "react";
-import { Table, Pagination, Popconfirm } from "antd";
+import { Table, Pagination } from "antd";
 import { PAGE_SIZE } from "../constants";
 import styles from "./Invoices.css";
 function Invoices({ list: dataSource, total, page: current }) {
-  function deleteHandler(id) {
-    console.warn(`TODO: ${id}`);
-  }
   const columns = [
     {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
+      title: "Description",
+      dataIndex: "description",
+      key: "description",
       render: text => <a href="">{text}</a>
     },
     {
-      title: "Email",
-      dataIndex: "email",
-      key: "email"
+      title: "Name",
+      dataIndex: "name",
+      key: "name"
     },
     {
-      title: "Website",
-      dataIndex: "website",
-      key: "website"
+      title: "Rate",
+      dataIndex: "rate",
+      key: "rate"
     },
     {
-      title: "Operation",
-      key: "operation",
-      render: (text, { id }) => (
-        <span className={styles.operation}>
-          <a href="">Edit</a>
-          <Popconfirm
-            title="Confirm to delete?"
-            onConfirm={deleteHandler.bind(null, id)}
-          >
-            <a href="">Delete</a>
-          </Popconfirm>
-        </span>
-      )
+      title: "Date",
+      dataIndex: "date",
+      key: "date"
+    },
+    {
+      title: "Quantity",
+      dataIndex: "quantity",
+      key: "quantity"
     }
   ];
   return (

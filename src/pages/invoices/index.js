@@ -6,6 +6,16 @@ const Invoices = Loadable({
   loading: () => <div>Loading</div>
 });
 
+const list = [
+  {
+    description: "microsoft",
+    name: "eric",
+    rate: "microsoft",
+    date: "microsoft",
+    quantity: 10
+  }
+];
+
 export default () => {
-  return <Invoices page="1" total="11" />;
+  return <Invoices list={list} page={1} total={11} />;
 };
