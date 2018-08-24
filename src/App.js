@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Home from "./pages/home";
 import Layout from "./layouts";
 import "./App.css";
+import "antd/dist/antd.css";
 import { Route } from "react-router-dom";
 import Invoices from "./pages/invoices";
 
