@@ -7,6 +7,7 @@
 - [x] Integrate with react-router.
 - [x] Lazy loading and best practices of react-router.
 - [x] Confirm data structure
+- [x] Css modules
 - [x] UI of list
 - [ ] UI of modal
 - [ ] Integrate with mobx.

@@ -8,10 +8,19 @@ const Invoices = Loadable({
 
 const list = [
   {
+    id: 1,
     description: "microsoft",
     name: "eric",
     rate: "microsoft",
     date: "microsoft",
+    quantity: 10
+  },
+  {
+    id: 2,
+    description: "microsoft2",
+    name: "eric2",
+    rate: "microsoft2",
+    date: "microsoft2",
     quantity: 10
   }
 ];
