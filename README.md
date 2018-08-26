@@ -9,11 +9,11 @@
 - [x] Confirm data structure
 - [x] Css modules
 - [x] UI of list
-- [ ] UI of modal
+- [x] UI of modal
 - [ ] Integrate with mobx.
 - [ ] State management
-- [ ] Investigate PDF generating library
-- [ ] Integrate PDF generating library
-- [ ] UI of PDF generating
+- [x] Investigate PDF generating library
+- [x] Integrate PDF generating library
+- [x] UI of PDF generating
 - [ ] Offline first
 - [ ] Server side development

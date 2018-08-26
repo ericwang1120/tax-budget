@@ -2,7 +2,7 @@ import React from "react";
 import { Table, Pagination } from "antd";
 import { PAGE_SIZE } from "../constants";
 import styles from "./Invoices.css";
-import InvoiceModal from './InvoiceModal';
+import InvoiceModal from "./InvoiceModal";
 
 function Invoices({ list: dataSource, total, page: current }) {
   const columns = [
@@ -25,7 +25,8 @@ function Invoices({ list: dataSource, total, page: current }) {
     {
       title: "Date",
       dataIndex: "date",
-      key: "date"
+      key: "date",
+      render: text => text.format("YYYY/MM/DD")
     },
     {
       title: "Quantity",
@@ -33,8 +34,8 @@ function Invoices({ list: dataSource, total, page: current }) {
       key: "quantity"
     },
     {
-      title: 'Operation',
-      key: 'operation',
+      title: "Operation",
+      key: "operation",
       render: (text, record) => (
         <span className={styles.operation}>
           <InvoiceModal record={record}>
@@ -42,8 +43,8 @@ function Invoices({ list: dataSource, total, page: current }) {
           </InvoiceModal>
           <a href="">Delete</a>
         </span>
-      ),
-    },
+      )
+    }
   ];
   return (
     <div className={styles.normal}>
