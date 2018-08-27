@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     height: 1480
   },
   page: {
-    flexDirection: "row",
+    flexDirection: "row"
   },
   section: {
     margin: 10,
@@ -18,15 +18,22 @@ const styles = StyleSheet.create({
 });
 
 // Create Document Component
-const MyDocument = () => (
+const MyDocument = props => (
   <Document style={styles.document}>
     <Page size="A4" style={styles.page}>
       <View style={styles.section}>
         <Text>Section #1</Text>
       </View>
       <View style={styles.section}>
-        <Text>Section #2</Text>
+        <Text>{props.list[0].name}</Text>
       </View>
+      {props.list.map(p => {
+        return (
+          <View style={styles.section}>
+            <Text>{p.name}</Text>
+          </View>
+        );
+      })}
     </Page>
   </Document>
 );

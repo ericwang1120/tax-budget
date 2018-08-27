@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import moment from "moment";
 import Loadable from "react-loadable";
 import { StyleSheet } from "@react-pdf/renderer";
@@ -32,11 +32,15 @@ const list = [
   }
 ];
 
-export default () => {
-  return (
-    <div>
-      <Invoices list={list} page={1} total={11} />
-      <PDFConvert />
-    </div>
-  );
-};
+class InvoicePage extends React.Component {
+  render() {
+    return (
+      <div>
+        <Invoices list={list} page={1} total={11} />
+        <PDFConvert list={list} />
+      </div>
+    );
+  }
+}
+
+export default InvoicePage;
