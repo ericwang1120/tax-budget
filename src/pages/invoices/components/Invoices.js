@@ -1,10 +1,15 @@
 import React from "react";
-import { Table, Pagination } from "antd";
+import { Table, Pagination, Popconfirm } from "antd";
 import { PAGE_SIZE } from "../constants";
 import styles from "./Invoices.css";
 import InvoiceModal from "./InvoiceModal";
 
-function Invoices({ list: dataSource, total, page: current }) {
+function Invoices({
+  list: dataSource,
+  total,
+  page: current,
+  onDelete: deleteHandler
+}) {
   const columns = [
     {
       title: "Description",
@@ -41,7 +46,12 @@ function Invoices({ list: dataSource, total, page: current }) {
           <InvoiceModal record={record}>
             <a>Edit</a>
           </InvoiceModal>
-          <a href="">Delete</a>
+          <Popconfirm
+            title="Confirm to delete?"
+            onConfirm={deleteHandler.bind(null, record.id)}
+          >
+            <a href="">Delete</a>
+          </Popconfirm>{" "}
         </span>
       )
     }
