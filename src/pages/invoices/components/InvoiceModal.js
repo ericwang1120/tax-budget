@@ -28,7 +28,7 @@ class InvoiceModal extends Component {
     const { onOk } = this.props;
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        onOk(values);
+        onOk({ ...values, id: this.props.record.id });
         this.hideModelHandler();
       }
     });

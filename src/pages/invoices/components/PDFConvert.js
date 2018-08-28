@@ -24,9 +24,6 @@ const MyDocument = props => (
       <View style={styles.section}>
         <Text>Section #1</Text>
       </View>
-      <View style={styles.section}>
-        <Text>{props.list[0].name}</Text>
-      </View>
       {props.list.map(p => {
         return (
           <View style={styles.section}>

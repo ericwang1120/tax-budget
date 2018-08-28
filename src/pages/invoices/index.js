@@ -48,21 +48,11 @@ class InvoicePage extends React.Component {
       pdfConvert: <PDFConvert list={list} />
     };
     this.deleteHandler = this.deleteHandler.bind(this);
-    this.toggle = this.toggle.bind(this);
+    this.editHandler = this.editHandler.bind(this);
+    this.createHandler = this.createHandler.bind(this);
   }
 
-  saveHandler(product) {
-    this.setState(prevState => {
-      return [...prevState.list.filter(p => p.id !== product.id), product];
-    });
-  }
-
-  deleteHandler(id) {
-    this.setState(prevState => {
-      prevState.list = prevState.list.filter(p => p.id !== id);
-      prevState.pdfConvert = null;
-      return prevState;
-    });
+  refreshPDF() {
     setTimeout(() => {
       this.setState(prevState => {
         prevState.pdfConvert = <PDFConvert list={prevState.list} />;
@@ -71,8 +61,37 @@ class InvoicePage extends React.Component {
     }, 1000);
   }
 
-  toggle() {
-    this.display = !this.display;
+  createHandler(product) {
+    this.setState(prevState => {
+      prevState.list = [
+        ...prevState.list,
+        { ...product, id: Math.max(...prevState.list.map(p => p.id)) + 1 }
+      ];
+      prevState.pdfConvert = null;
+      return prevState;
+    });
+    this.refreshPDF();
+  }
+
+  editHandler(product) {
+    this.setState(prevState => {
+      prevState.list = [
+        ...prevState.list.filter(p => p.id !== product.id),
+        product
+      ];
+      prevState.pdfConvert = null;
+      return prevState;
+    });
+    this.refreshPDF();
+  }
+
+  deleteHandler(id) {
+    this.setState(prevState => {
+      prevState.list = prevState.list.filter(p => p.id !== id);
+      prevState.pdfConvert = null;
+      return prevState;
+    });
+    this.refreshPDF();
   }
 
   render() {
@@ -82,9 +101,9 @@ class InvoicePage extends React.Component {
       <div>
         <Invoices
           list={this.state.list}
-          page={1}
-          total={11}
           onDelete={this.deleteHandler}
+          onEdit={this.editHandler}
+          onCreate={this.createHandler}
         />
         {this.state.pdfConvert}
       </div>
