@@ -63,10 +63,11 @@ class InvoicePage extends React.Component {
 
   createHandler(product) {
     this.setState(prevState => {
-      prevState.list = [
-        ...prevState.list,
-        { ...product, id: Math.max(...prevState.list.map(p => p.id)) + 1 }
-      ];
+      const newId =
+        prevState.list.length === 0
+          ? 1
+          : Math.max(...prevState.list.map(p => p.id)) + 1;
+      prevState.list = [...prevState.list, { ...product, id: newId }];
       prevState.pdfConvert = null;
       return prevState;
     });
