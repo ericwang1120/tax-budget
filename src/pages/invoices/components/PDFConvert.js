@@ -1,5 +1,17 @@
 import React from "react";
-import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
+import {
+  Page,
+  Text,
+  View,
+  Document,
+  StyleSheet,
+  Font
+} from "@react-pdf/renderer";
+
+Font.register(
+  `https://raw.githubusercontent.com/ericwang1120/tax-budget/master/src/pages/invoices/components/Microsoft-Yahei.ttf`,
+  { family: "Microsoft-Yahei" }
+);
 
 // Create styles
 const styles = StyleSheet.create({
@@ -13,7 +25,8 @@ const styles = StyleSheet.create({
   section: {
     margin: 10,
     padding: 10,
-    flexGrow: 1
+    flexGrow: 1,
+    fontFamily: "Microsoft-Yahei"
   }
 });
 
