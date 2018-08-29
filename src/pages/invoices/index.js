@@ -50,6 +50,7 @@ class InvoicePage extends React.Component {
     this.deleteHandler = this.deleteHandler.bind(this);
     this.editHandler = this.editHandler.bind(this);
     this.createHandler = this.createHandler.bind(this);
+    this.clearAllHandler = this.clearAllHandler.bind(this);
   }
 
   refreshPDF() {
@@ -59,6 +60,15 @@ class InvoicePage extends React.Component {
         return prevState;
       });
     }, 1000);
+  }
+
+  clearAllHandler() {
+    this.setState(prevState => {
+      prevState.pdfConvert = null;
+      prevState.list = [];
+      return prevState;
+    });
+    this.refreshPDF();
   }
 
   createHandler(product) {
@@ -105,6 +115,7 @@ class InvoicePage extends React.Component {
           onDelete={this.deleteHandler}
           onEdit={this.editHandler}
           onCreate={this.createHandler}
+          onClearAll={this.clearAllHandler}
         />
         {this.state.pdfConvert}
       </div>

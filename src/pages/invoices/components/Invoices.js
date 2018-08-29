@@ -7,7 +7,8 @@ function Invoices({
   list: dataSource,
   onDelete: deleteHandler,
   onEdit: editHandler,
-  onCreate: createHandler
+  onCreate: createHandler,
+  onClearAll: clearAllHandler
 }) {
   const columns = [
     {
@@ -48,8 +49,11 @@ function Invoices({
       <div>
         <div className={styles.create}>
           <InvoiceModal record={{}} onOk={createHandler}>
-            <Button type="primary">Create User</Button>
+            <Button type="primary">Create Invoice</Button>
           </InvoiceModal>
+          <Popconfirm title="Confirm to clear all?" onConfirm={clearAllHandler}>
+            <Button type="danger">Clear All</Button>
+          </Popconfirm>
         </div>
         <Table
           columns={columns}
