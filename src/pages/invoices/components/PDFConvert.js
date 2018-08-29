@@ -39,7 +39,7 @@ const MyDocument = props => (
       </View>
       {props.list.map(p => {
         return (
-          <View style={styles.section}>
+          <View style={styles.section} key={p.id}>
             <Text>{p.name}</Text>
           </View>
         );

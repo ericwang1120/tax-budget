@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, Popconfirm, Button } from "antd";
+import { Input, Table, Popconfirm, Button } from "antd";
 import styles from "./Invoices.css";
 import InvoiceModal from "./InvoiceModal";
 
@@ -8,7 +8,11 @@ function Invoices({
   onDelete: deleteHandler,
   onEdit: editHandler,
   onCreate: createHandler,
-  onClearAll: clearAllHandler
+  onClearAll: clearAllHandler,
+  onUpdateUsername: updateUsernameHandler,
+  onUpdateCompanyName: updateCompanyNameHandler,
+  username,
+  companyName
 }) {
   const columns = [
     {
@@ -45,23 +49,38 @@ function Invoices({
     }
   ];
   return (
-    <div className={styles.normal}>
-      <div>
-        <div className={styles.create}>
-          <InvoiceModal record={{}} onOk={createHandler}>
-            <Button type="primary">Create Invoice</Button>
-          </InvoiceModal>
-          <Popconfirm title="Confirm to clear all?" onConfirm={clearAllHandler}>
-            <Button type="danger">Clear All</Button>
-          </Popconfirm>
+    <div>
+      <div className={styles.topToolbar}>
+        <InvoiceModal record={{}} onOk={createHandler}>
+          <Button type="primary">Create Record</Button>
+        </InvoiceModal>{" "}
+        <div>
+          <Input
+            className={styles.username}
+            defaultValue={username}
+            placeholder="User Name"
+          />
         </div>
-        <Table
-          columns={columns}
-          dataSource={dataSource}
-          rowKey={record => record.id}
-          pagination={false}
-        />
+        <div>
+          <Input
+            className={styles.username}
+            placeholder="Company name"
+            defaultValue={companyName}
+            onPressEnter={e => updateCompanyNameHandler(e.target.value)}
+          />
+        </div>
+        <Popconfirm title="Confirm to clear all?" onConfirm={clearAllHandler}>
+          <Button type="danger" className={styles.clearAll}>
+            Clear All
+          </Button>
+        </Popconfirm>
       </div>
+      <Table
+        columns={columns}
+        dataSource={dataSource}
+        rowKey={record => record.id}
+        pagination={false}
+      />
     </div>
   );
 }

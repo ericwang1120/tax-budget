@@ -4,3 +4,20 @@
 :local(.operation) a {
   margin: 0 0.5em;
 }
+
+:local(.create) {
+  margin: 0 0.5em;
+}
+
+:local(.clearAll) {
+  margin: 0 0.5em;
+}
+
+:local(.topToolbar) {
+  display: flex;
+  justify-content: space-between;
+}
+
+:local(.username) {
+  width: 200px;
+}

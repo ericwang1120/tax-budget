@@ -40,17 +40,20 @@ const list = [
 
 class InvoicePage extends React.Component {
   pdfConvert;
-
   constructor(props) {
     super(props);
     this.state = {
-      list: [...list],
-      pdfConvert: <PDFConvert list={list} />
+      list: list,
+      pdfConvert: <PDFConvert list={list} />,
+      username: "test",
+      companyName: "test"
     };
     this.deleteHandler = this.deleteHandler.bind(this);
     this.editHandler = this.editHandler.bind(this);
     this.createHandler = this.createHandler.bind(this);
     this.clearAllHandler = this.clearAllHandler.bind(this);
+    this.updateCompanyNameHandler = this.updateCompanyNameHandler.bind(this);
+    this.updateUsernameHandler = this.updateUsernameHandler.bind(this);
   }
 
   refreshPDF() {
@@ -59,7 +62,7 @@ class InvoicePage extends React.Component {
         prevState.pdfConvert = <PDFConvert list={prevState.list} />;
         return prevState;
       });
-    }, 1000);
+    }, 100);
   }
 
   clearAllHandler() {
@@ -105,8 +108,22 @@ class InvoicePage extends React.Component {
     this.refreshPDF();
   }
 
+  updateUsernameHandler(username) {
+    this.setState(p => (p.username = username));
+  }
+
+  updateCompanyNameHandler(companyName) {
+    this.setState(p => (p.companyName = companyName));
+  }
+
   render() {
-    this.pdfConvert = <PDFConvert list={this.state.list} />;
+    this.pdfConvert = (
+      <PDFConvert
+        list={this.state.list}
+        username={this.state.username}
+        companyName={this.state.companyName}
+      />
+    );
 
     return (
       <div>
@@ -116,6 +133,10 @@ class InvoicePage extends React.Component {
           onEdit={this.editHandler}
           onCreate={this.createHandler}
           onClearAll={this.clearAllHandler}
+          onUpdateUsername={this.updateUsernameHandler}
+          onUpdateCompanyName={this.updateCompanyNameHandler}
+          username={this.state.username}
+          companyName={this.state.companyName}
         />
         {this.state.pdfConvert}
       </div>
