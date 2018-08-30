@@ -21,12 +21,6 @@ function Invoices({
       render: text => <a href="">{text}</a>
     },
     { title: "Rate", dataIndex: "rate", key: "rate" },
-    {
-      title: "Date",
-      dataIndex: "date",
-      key: "date",
-      render: text => text.format("YYYY/MM/DD")
-    },
     { title: "Quantity", dataIndex: "quantity", key: "quantity" },
     {
       title: "Operation",

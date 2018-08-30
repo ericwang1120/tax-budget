@@ -24,21 +24,22 @@ const list = [
     id: 1,
     description: "microsoft",
     rate: "3.5",
-    date: moment("2015-01-01"),
     quantity: 10
   },
   {
     id: 2,
     description: "microsoft2",
     rate: "2.5",
-    date: moment("2015-01-01"),
     quantity: 10
   }
 ];
 
 const baseInfo = {
   username: "test",
-  companyName: "WinTrade"
+  companyName: "WINTRADING",
+  address: "China",
+  date: moment("2015-01-01"),
+  dueDate: moment("2015-02-02")
 };
 
 class InvoicePage extends React.Component {
@@ -48,8 +49,6 @@ class InvoicePage extends React.Component {
     this.state = {
       list: list,
       pdfConvert: <PDFConvert list={list} baseInfo={baseInfo} />,
-      username: "test",
-      companyName: "test",
       baseInfo: baseInfo
     };
     this.deleteHandler = this.deleteHandler.bind(this);

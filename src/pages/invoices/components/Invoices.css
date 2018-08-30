@@ -12,12 +12,3 @@
 :local(.clearAll) {
   margin: 0 0.5em;
 }
-
-:local(.topToolbar) {
-  display: flex;
-  justify-content: space-between;
-}
-
-:local(.username) {
-  width: 200px;
-}

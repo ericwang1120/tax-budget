@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Input, Button, Popconfirm } from "antd";
+import { Form, Input, Button, Popconfirm, DatePicker } from "antd";
 import InvoiceModal from "./InvoiceModal";
 import styles from "./TopToolbar.css";
 
@@ -24,7 +24,13 @@ class TopToolbar extends Component {
 
   render() {
     const { createHandler, clearAllHandler } = this.props;
-    const { username, companyName } = this.props.baseInfo;
+    const {
+      username,
+      companyName,
+      address,
+      date,
+      dueDate
+    } = this.props.baseInfo;
     const { getFieldDecorator } = this.props.form;
     const formItemLayout = {
       labelCol: { span: 6 },
@@ -34,19 +40,34 @@ class TopToolbar extends Component {
     return (
       <div className={styles.main}>
         <Form onSubmit={this.okHandler}>
+          <FormItem {...formItemLayout} label="Company Name">
+            {getFieldDecorator("companyName", {
+              initialValue: companyName
+            })(<Input />)}
+          </FormItem>
           <FormItem {...formItemLayout} label="User Name">
             {getFieldDecorator("username", {
               initialValue: username
             })(<Input />)}
           </FormItem>
-          <FormItem {...formItemLayout} label="Company Name">
-            {getFieldDecorator("companyName", {
-              initialValue: companyName
+          <FormItem {...formItemLayout} label="Address">
+            {getFieldDecorator("address", {
+              initialValue: address
             })(<Input />)}
-            <Button type="primary" onClick={this.okHandler}>
-              Update
-            </Button>
           </FormItem>
+          <FormItem {...formItemLayout} label="Date">
+            {getFieldDecorator("date", {
+              initialValue: date
+            })(<DatePicker />)}
+          </FormItem>
+          <FormItem {...formItemLayout} label="Due Date">
+            {getFieldDecorator("dueDate", {
+              initialValue: dueDate
+            })(<DatePicker />)}
+          </FormItem>
+          <Button type="primary" onClick={this.okHandler}>
+            Update
+          </Button>
         </Form>
         <div className={styles.actions}>
           <InvoiceModal record={{}} onOk={createHandler}>

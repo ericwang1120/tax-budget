@@ -20,30 +20,33 @@ const styles = StyleSheet.create({
     height: 1480
   },
   page: {
-    flexDirection: "row"
+    flexDirection: "column",
+    fontFamily: "Microsoft-Yahei"
   },
   section: {
-    margin: 10,
-    padding: 10,
-    flexGrow: 1,
-    fontFamily: "Microsoft-Yahei"
+    flexDirection: "row",
+    justifyContent: "space-between",
+    borderBottom: 1
   }
 });
 
+const formatDate = date => date.format("YYYY/MM/DD");
 // Create Document Component
 const MyDocument = props => (
   <Document style={styles.document}>
     <Page size="A4" style={styles.page}>
       <View style={styles.section}>
         <Text>{props.baseInfo.companyName}</Text>
+        <Text>Tax Invoice</Text>
+        <Text>{props.baseInfo.address}</Text>
+        <Text>{formatDate(props.baseInfo.date)}</Text>
+        <Text>{formatDate(props.baseInfo.dueDate)}</Text>
       </View>
-      {props.list.map(p => {
-        return (
-          <View style={styles.section} key={p.id}>
-            <Text>{p.description}</Text>
-          </View>
-        );
-      })}
+      {props.list.map(p => (
+        <View key={p.id}>
+          <Text>{p.description}</Text>
+        </View>
+      ))}
     </Page>
   </Document>
 );

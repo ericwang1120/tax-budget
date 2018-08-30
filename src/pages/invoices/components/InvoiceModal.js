@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Modal, Form, Input, DatePicker, InputNumber } from "antd";
+import { Modal, Form, Input, InputNumber } from "antd";
 
 const FormItem = Form.Item;
 
@@ -37,7 +37,7 @@ class InvoiceModal extends Component {
   render() {
     const { children } = this.props;
     const { getFieldDecorator } = this.props.form;
-    const { description, rate, date, quantity } = this.props.record;
+    const { description, rate, quantity } = this.props.record;
     const formItemLayout = {
       labelCol: { span: 6 },
       wrapperCol: { span: 14 }
@@ -58,20 +58,15 @@ class InvoiceModal extends Component {
                 initialValue: description
               })(<Input />)}
             </FormItem>
-            <FormItem {...formItemLayout} label="Rate">
-              {getFieldDecorator("rate", {
-                initialValue: rate
-              })(<InputNumber />)}
-            </FormItem>
-            <FormItem {...formItemLayout} label="Date">
-              {getFieldDecorator("date", {
-                initialValue: date
-              })(<DatePicker />)}
-            </FormItem>
             <FormItem {...formItemLayout} label="Quantity">
               {getFieldDecorator("quantity", {
                 initialValue: quantity
               })(<InputNumber precision={0} />)}
+            </FormItem>
+            <FormItem {...formItemLayout} label="Rate">
+              {getFieldDecorator("rate", {
+                initialValue: rate
+              })(<InputNumber />)}
             </FormItem>
           </Form>
         </Modal>
