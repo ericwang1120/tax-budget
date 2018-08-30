@@ -35,7 +35,7 @@ const MyDocument = props => (
   <Document style={styles.document}>
     <Page size="A4" style={styles.page}>
       <View style={styles.section}>
-        <Text>Section #1</Text>
+        <Text>{props.baseInfo.companyName}</Text>
       </View>
       {props.list.map(p => {
         return (

@@ -37,7 +37,7 @@ class InvoiceModal extends Component {
   render() {
     const { children } = this.props;
     const { getFieldDecorator } = this.props.form;
-    const { description, name, rate, date, quantity } = this.props.record;
+    const { description, rate, date, quantity } = this.props.record;
     const formItemLayout = {
       labelCol: { span: 6 },
       wrapperCol: { span: 14 }

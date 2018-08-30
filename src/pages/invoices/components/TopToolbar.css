@@ -1,0 +1,13 @@
+:local(.main) {
+  display: flex;
+  flex-direction: column;
+}
+
+:local(.invoiceForm) {
+  display: flex;
+}
+
+:local(.actions) {
+  display: flex;
+  justify-content: space-between;
+}

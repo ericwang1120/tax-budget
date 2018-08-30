@@ -10,10 +10,8 @@ function Invoices({
   onEdit: editHandler,
   onCreate: createHandler,
   onClearAll: clearAllHandler,
-  onUpdateUsername: updateUsernameHandler,
-  onUpdateCompanyName: updateCompanyNameHandler,
-  username,
-  companyName
+  updateBaseInfo,
+  baseInfo
 }) {
   const columns = [
     {
@@ -53,6 +51,8 @@ function Invoices({
       <TopToolbar
         createHandler={createHandler}
         clearAllHandler={clearAllHandler}
+        update={updateBaseInfo}
+        baseInfo={baseInfo}
       />
       <Table
         columns={columns}

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Input, Button, Popconfirm } from "antd";
 import InvoiceModal from "./InvoiceModal";
+import styles from "./TopToolbar.css";
 
 const FormItem = Form.Item;
 
@@ -13,22 +14,17 @@ class TopToolbar extends Component {
   }
 
   okHandler = () => {
-    const { onOk } = this.props;
+    const { update } = this.props;
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        onOk({ ...values, id: this.props.record.id });
-        this.hideModelHandler();
+        update(values);
       }
     });
   };
 
   render() {
-    const {
-      createHandler,
-      clearAllHandler,
-      username,
-      companyName
-    } = this.props;
+    const { createHandler, clearAllHandler } = this.props;
+    const { username, companyName } = this.props.baseInfo;
     const { getFieldDecorator } = this.props.form;
     const formItemLayout = {
       labelCol: { span: 6 },
@@ -36,24 +32,31 @@ class TopToolbar extends Component {
     };
 
     return (
-      <Form onSubmit={this.okHandler}>
-        <FormItem {...formItemLayout} label="User Name">
-          {getFieldDecorator("username", {
-            initialValue: username
-          })(<Input />)}
-        </FormItem>
-        <FormItem {...formItemLayout} label="Company Name">
-          {getFieldDecorator("username", {
-            initialValue: companyName
-          })(<Input />)}
-        </FormItem>
-        <InvoiceModal record={{}} onOk={createHandler}>
-          <Button type="primary">Create Record</Button>
-        </InvoiceModal>
-        <Popconfirm title="Confirm to clear all?" onConfirm={clearAllHandler}>
-          <Button type="danger">Clear All</Button>
-        </Popconfirm>
-      </Form>
+      <div className={styles.main}>
+        <Form onSubmit={this.okHandler}>
+          <FormItem {...formItemLayout} label="User Name">
+            {getFieldDecorator("username", {
+              initialValue: username
+            })(<Input />)}
+          </FormItem>
+          <FormItem {...formItemLayout} label="Company Name">
+            {getFieldDecorator("companyName", {
+              initialValue: companyName
+            })(<Input />)}
+            <Button type="primary" onClick={this.okHandler}>
+              Update
+            </Button>
+          </FormItem>
+        </Form>
+        <div className={styles.actions}>
+          <InvoiceModal record={{}} onOk={createHandler}>
+            <Button type="primary">Create Record</Button>
+          </InvoiceModal>
+          <Popconfirm title="Confirm to clear all?" onConfirm={clearAllHandler}>
+            <Button type="danger">Clear All</Button>
+          </Popconfirm>
+        </div>
+      </div>
     );
   }
 }
