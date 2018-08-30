@@ -23,7 +23,6 @@ const list = [
   {
     id: 1,
     description: "microsoft",
-    name: "eric",
     rate: "3.5",
     date: moment("2015-01-01"),
     quantity: 10
@@ -31,7 +30,6 @@ const list = [
   {
     id: 2,
     description: "microsoft2",
-    name: "eric2",
     rate: "2.5",
     date: moment("2015-01-01"),
     quantity: 10

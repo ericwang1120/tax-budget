@@ -40,7 +40,7 @@ const MyDocument = props => (
       {props.list.map(p => {
         return (
           <View style={styles.section} key={p.id}>
-            <Text>{p.name}</Text>
+            <Text>{p.description}</Text>
           </View>
         );
       })}

@@ -1,7 +1,8 @@
 import React from "react";
-import { Input, Table, Popconfirm, Button } from "antd";
+import { Table, Popconfirm } from "antd";
 import styles from "./Invoices.css";
 import InvoiceModal from "./InvoiceModal";
+import TopToolbar from "./TopToolbar";
 
 function Invoices({
   list: dataSource,
@@ -21,7 +22,6 @@ function Invoices({
       key: "description",
       render: text => <a href="">{text}</a>
     },
-    { title: "Name", dataIndex: "name", key: "name" },
     { title: "Rate", dataIndex: "rate", key: "rate" },
     {
       title: "Date",
@@ -50,31 +50,10 @@ function Invoices({
   ];
   return (
     <div>
-      <div className={styles.topToolbar}>
-        <InvoiceModal record={{}} onOk={createHandler}>
-          <Button type="primary">Create Record</Button>
-        </InvoiceModal>{" "}
-        <div>
-          <Input
-            className={styles.username}
-            defaultValue={username}
-            placeholder="User Name"
-          />
-        </div>
-        <div>
-          <Input
-            className={styles.username}
-            placeholder="Company name"
-            defaultValue={companyName}
-            onPressEnter={e => updateCompanyNameHandler(e.target.value)}
-          />
-        </div>
-        <Popconfirm title="Confirm to clear all?" onConfirm={clearAllHandler}>
-          <Button type="danger" className={styles.clearAll}>
-            Clear All
-          </Button>
-        </Popconfirm>
-      </div>
+      <TopToolbar
+        createHandler={createHandler}
+        clearAllHandler={clearAllHandler}
+      />
       <Table
         columns={columns}
         dataSource={dataSource}

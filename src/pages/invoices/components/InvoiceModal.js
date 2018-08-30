@@ -58,11 +58,6 @@ class InvoiceModal extends Component {
                 initialValue: description
               })(<Input />)}
             </FormItem>
-            <FormItem {...formItemLayout} label="Name">
-              {getFieldDecorator("name", {
-                initialValue: name
-              })(<Input />)}
-            </FormItem>
             <FormItem {...formItemLayout} label="Rate">
               {getFieldDecorator("rate", {
                 initialValue: rate
