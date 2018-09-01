@@ -39,7 +39,8 @@ const baseInfo = {
   companyName: "WINTRADING",
   address: "China",
   date: moment("2015-01-01"),
-  dueDate: moment("2015-02-02")
+  dueDate: moment("2015-02-02"),
+  isPaid: true
 };
 
 class InvoicePage extends React.Component {
@@ -111,6 +112,7 @@ class InvoicePage extends React.Component {
   }
 
   updateBaseInfo(baseInfo) {
+    console.log(baseInfo);
     this.setState(prevState => (prevState.baseInfo = baseInfo));
     this.refreshPDF();
   }

@@ -1,5 +1,14 @@
 import React, { Component } from "react";
-import { Form, Input, Button, Popconfirm, DatePicker } from "antd";
+import {
+  Form,
+  Input,
+  Button,
+  Popconfirm,
+  DatePicker,
+  Switch,
+  Row,
+  Col
+} from "antd";
 import InvoiceModal from "./InvoiceModal";
 import styles from "./TopToolbar.css";
 
@@ -29,42 +38,64 @@ class TopToolbar extends Component {
       companyName,
       address,
       date,
-      dueDate
+      dueDate,
+      isPaid
     } = this.props.baseInfo;
     const { getFieldDecorator } = this.props.form;
-    const formItemLayout = {
-      labelCol: { span: 6 },
-      wrapperCol: { span: 14 }
-    };
 
     return (
       <div className={styles.main}>
-        <Form onSubmit={this.okHandler}>
-          <FormItem {...formItemLayout} label="Company Name">
-            {getFieldDecorator("companyName", {
-              initialValue: companyName
-            })(<Input />)}
-          </FormItem>
-          <FormItem {...formItemLayout} label="User Name">
-            {getFieldDecorator("username", {
-              initialValue: username
-            })(<Input />)}
-          </FormItem>
-          <FormItem {...formItemLayout} label="Address">
-            {getFieldDecorator("address", {
-              initialValue: address
-            })(<Input />)}
-          </FormItem>
-          <FormItem {...formItemLayout} label="Date">
-            {getFieldDecorator("date", {
-              initialValue: date
-            })(<DatePicker />)}
-          </FormItem>
-          <FormItem {...formItemLayout} label="Due Date">
-            {getFieldDecorator("dueDate", {
-              initialValue: dueDate
-            })(<DatePicker />)}
-          </FormItem>
+        <Form
+          className={styles.baseInfoForm}
+          onSubmit={this.okHandler}
+          layout="vertical"
+        >
+          <Row gutter={24}>
+            <Col span={8} style={{ textAlign: "left" }}>
+              <FormItem label="Company Name">
+                {getFieldDecorator("companyName", {
+                  initialValue: companyName
+                })(<Input />)}
+              </FormItem>
+            </Col>
+            <Col span={8} style={{ textAlign: "left" }}>
+              <FormItem label="User Name">
+                {getFieldDecorator("username", {
+                  initialValue: username
+                })(<Input />)}
+              </FormItem>
+            </Col>
+            <Col span={8} style={{ textAlign: "left" }}>
+              <FormItem label="Address">
+                {getFieldDecorator("address", {
+                  initialValue: address
+                })(<Input />)}
+              </FormItem>
+            </Col>
+          </Row>
+          <Row gutter={24}>
+            <Col span={8} style={{ textAlign: "left" }}>
+              <FormItem label="Date">
+                {getFieldDecorator("date", {
+                  initialValue: date
+                })(<DatePicker />)}
+              </FormItem>
+            </Col>
+            <Col span={8} style={{ textAlign: "left" }}>
+              <FormItem label="Due Date">
+                {getFieldDecorator("dueDate", {
+                  initialValue: dueDate
+                })(<DatePicker />)}
+              </FormItem>
+            </Col>
+            <Col span={8} style={{ textAlign: "left" }}>
+              <FormItem label="Is Paid">
+                {getFieldDecorator("isPaid", {
+                  initialValue: isPaid
+                })(<Switch defaultChecked={isPaid} />)}
+              </FormItem>
+            </Col>
+          </Row>
           <Button type="primary" onClick={this.okHandler}>
             Update
           </Button>
