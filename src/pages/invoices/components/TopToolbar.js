@@ -7,7 +7,8 @@ import {
   DatePicker,
   Switch,
   Row,
-  Col
+  Col,
+  InputNumber
 } from "antd";
 import InvoiceModal from "./InvoiceModal";
 import styles from "./TopToolbar.css";
@@ -31,15 +32,27 @@ class TopToolbar extends Component {
     });
   };
 
+  clearAllIncludingForm = () => {
+    this.props.clearAllHandler();
+    this.props.form.setFieldsValue({
+      username: "",
+      address: "",
+      invoiceNo: this.props.form.getFieldValue("invoiceNo") + 1
+    });
+    this.okHandler();
+  };
+
   render() {
-    const { createHandler, clearAllHandler } = this.props;
+    const { createHandler } = this.props;
     const {
       username,
       companyName,
       address,
       date,
       dueDate,
-      isPaid
+      isPaid,
+      gstNo,
+      invoiceNo
     } = this.props.baseInfo;
     const { getFieldDecorator } = this.props.form;
 
@@ -59,13 +72,29 @@ class TopToolbar extends Component {
               </FormItem>
             </Col>
             <Col span={8} style={{ textAlign: "left" }}>
+              <FormItem label="GST No.">
+                {getFieldDecorator("gstNo", {
+                  initialValue: gstNo
+                })(<Input />)}
+              </FormItem>
+            </Col>
+            <Col span={8} style={{ textAlign: "left" }}>
+              <FormItem label="Invoice No.">
+                {getFieldDecorator("invoiceNo", {
+                  initialValue: invoiceNo
+                })(<InputNumber />)}
+              </FormItem>
+            </Col>
+          </Row>
+          <Row gutter={24}>
+            <Col span={8} style={{ textAlign: "left" }}>
               <FormItem label="User Name">
                 {getFieldDecorator("username", {
                   initialValue: username
                 })(<Input />)}
               </FormItem>
             </Col>
-            <Col span={8} style={{ textAlign: "left" }}>
+            <Col span={16} style={{ textAlign: "left" }}>
               <FormItem label="Address">
                 {getFieldDecorator("address", {
                   initialValue: address
@@ -91,8 +120,9 @@ class TopToolbar extends Component {
             <Col span={8} style={{ textAlign: "left" }}>
               <FormItem label="Is Paid">
                 {getFieldDecorator("isPaid", {
-                  initialValue: isPaid
-                })(<Switch defaultChecked={isPaid} />)}
+                  initialValue: isPaid,
+                  valuePropName: "checked"
+                })(<Switch />)}
               </FormItem>
             </Col>
           </Row>
@@ -104,7 +134,10 @@ class TopToolbar extends Component {
           <InvoiceModal record={{}} onOk={createHandler}>
             <Button type="primary">Create Record</Button>
           </InvoiceModal>
-          <Popconfirm title="Confirm to clear all?" onConfirm={clearAllHandler}>
+          <Popconfirm
+            title="Confirm to clear all?"
+            onConfirm={this.clearAllIncludingForm}
+          >
             <Button type="danger">Clear All</Button>
           </Popconfirm>
         </div>

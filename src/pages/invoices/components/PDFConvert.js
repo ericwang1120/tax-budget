@@ -76,7 +76,7 @@ const MyDocument = props => (
           <Text>{props.baseInfo.address}</Text>
         </View>
         <View>
-          <Text>Invoice No: 1</Text>
+          <Text>Invoice No: {props.baseInfo.invoiceNo}</Text>
           <Text>Date: {formatDate(props.baseInfo.date)}</Text>
           <Text>Due Date: {formatDate(props.baseInfo.dueDate)}</Text>
         </View>
