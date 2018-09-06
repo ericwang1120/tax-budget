@@ -5,10 +5,6 @@ import InvoiceModal from "./InvoiceModal";
 import TopToolbar from "./TopToolbar";
 
 class Invoices extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const {
       list: dataSource,

@@ -60,45 +60,66 @@ const styles = StyleSheet.create({
 
 const formatDate = date => date.format("YYYY/MM/DD");
 // Create Document Component
-const MyDocument = props => (
-  <Document style={styles.document}>
-    <Page size="A4" orientation="landscape" style={styles.page}>
-      <View style={styles.topLine}>
-        <Text style={styles.topLine.text}>{props.baseInfo.companyName}</Text>
-        <Text style={styles.topLine.text}>Tax Invoice</Text>
-      </View>
-      <View style={styles.section}>
-        <View>
-          <Text>Bill To: </Text>
+function MyDocument(props) {
+  const total = props.list
+    .map(p => p.quantity * p.rate)
+    .reduce((a, b) => a + b);
+  return (
+    <Document style={styles.document}>
+      <Page size="A4" orientation="landscape" style={styles.page}>
+        <View style={styles.topLine}>
+          <Text style={styles.topLine.text}>{props.baseInfo.companyName}</Text>
+          <Text style={styles.topLine.text}>Tax Invoice</Text>
         </View>
-        <View>
-          <Text>{props.baseInfo.username}</Text>
-          <Text>{props.baseInfo.address}</Text>
-        </View>
-        <View>
-          <Text>Invoice No: {props.baseInfo.invoiceNo}</Text>
-          <Text>Date: {formatDate(props.baseInfo.date)}</Text>
-          <Text>Due Date: {formatDate(props.baseInfo.dueDate)}</Text>
-        </View>
-      </View>
-      <View style={styles.table}>
-        <View style={styles.table.header}>
-          <Text style={styles.table.boxLarge}>Description</Text>
-          <Text style={styles.table.boxNormal}>Quantity</Text>
-          <Text style={styles.table.boxNormal}>Rate</Text>
-          <Text style={styles.table.boxNormal}>Amount</Text>
-        </View>
-        {props.list.map(p => (
-          <View style={styles.table.row} key={p.id}>
-            <Text style={styles.table.boxLarge}>{p.description}</Text>
-            <Text style={styles.table.boxNormal}>{p.quantity}</Text>
-            <Text style={styles.table.boxNormal}>{p.rate}</Text>
-            <Text style={styles.table.boxNormal}>{p.amount}</Text>
+        <View style={styles.section}>
+          <View>
+            <Text>Bill To: </Text>
           </View>
-        ))}
-      </View>
-    </Page>
-  </Document>
-);
+          <View>
+            <Text>{props.baseInfo.username}</Text>
+            <Text>{props.baseInfo.address}</Text>
+          </View>
+          <View>
+            <Text>Invoice No: {props.baseInfo.invoiceNo}</Text>
+            <Text>Date: {formatDate(props.baseInfo.date)}</Text>
+            <Text>Due Date: {formatDate(props.baseInfo.dueDate)}</Text>
+          </View>
+        </View>
+        <View style={styles.table}>
+          <View style={styles.table.header}>
+            <Text style={styles.table.boxLarge}>Description</Text>
+            <Text style={styles.table.boxNormal}>Quantity</Text>
+            <Text style={styles.table.boxNormal}>Rate</Text>
+            <Text style={styles.table.boxNormal}>Amount</Text>
+          </View>
+          {props.list.map(p => (
+            <View style={styles.table.row} key={p.id}>
+              <Text style={styles.table.boxLarge}>{p.description}</Text>
+              <Text style={styles.table.boxNormal}>{p.quantity}</Text>
+              <Text style={styles.table.boxNormal}>{p.rate}</Text>
+              <Text style={styles.table.boxNormal}>{p.quantity * p.rate}</Text>
+            </View>
+          ))}
+        </View>
+        <View>
+          <Text>Subtotal: {total} </Text>
+          <Text>GST:0</Text>
+          <Text>
+            Total:
+            {total}
+          </Text>
+          <Text>
+            Paid:
+            {props.baseInfo.isPaid ? total : 0}
+          </Text>
+          <Text>
+            Balance Due:
+            {props.baseInfo.isPaid ? 0 : total}
+          </Text>
+        </View>
+      </Page>
+    </Document>
+  );
+}
 
 export default MyDocument;

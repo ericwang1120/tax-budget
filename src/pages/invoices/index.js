@@ -23,13 +23,13 @@ const list = [
   {
     id: 1,
     description: "microsoft",
-    rate: "3.5",
+    rate: 3.5,
     quantity: 10
   },
   {
     id: 2,
     description: "microsoft2",
-    rate: "2.5",
+    rate: 2.5,
     quantity: 10
   }
 ];
@@ -40,7 +40,7 @@ const baseInfo = {
   address: "",
   date: moment(new Date()),
   dueDate: moment(new Date()),
-  isPaid: true,
+  isPaid: false,
   invoiceNo: 1,
   gstNo: "88 - 166 - 469"
 };
