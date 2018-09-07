@@ -63,7 +63,7 @@ const formatDate = date => date.format("YYYY/MM/DD");
 function MyDocument(props) {
   const total = props.list
     .map(p => p.quantity * p.rate)
-    .reduce((a, b) => a + b);
+    .reduce((a, b) => a + b, 0);
   return (
     <Document style={styles.document}>
       <Page size="A4" orientation="landscape" style={styles.page}>
