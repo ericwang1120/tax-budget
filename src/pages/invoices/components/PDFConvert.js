@@ -7,10 +7,13 @@ import {
   StyleSheet,
   Font
 } from "@react-pdf/renderer";
+import MicrosoftYahei from "./Microsoft-Yahei.ttf";
 
 Font.register(
-  `https://raw.githubusercontent.com/ericwang1120/tax-budget/master/src/pages/invoices/components/Microsoft-Yahei.ttf`,
-  { family: "Microsoft-Yahei" }
+  window.location.protocol + "//" + window.location.host + MicrosoftYahei,
+  {
+    family: "Microsoft-Yahei"
+  }
 );
 
 // Create styles
@@ -21,12 +24,14 @@ const styles = StyleSheet.create({
   },
   page: {
     flexDirection: "column",
+    padding: "30 50",
     fontFamily: "Microsoft-Yahei"
   },
   section: {
     flexDirection: "row",
     justifyContent: "space-between",
-    borderBottom: 1
+    fontSize: 12,
+    margin: "5 0 5 0"
   },
   topLine: {
     flexDirection: "row",
@@ -47,13 +52,15 @@ const styles = StyleSheet.create({
     row: {
       display: "flex",
       flexDirection: "row",
-      justifyContent: "space-between"
+      justifyContent: "space-between",
+      fontSize: 12
     },
     header: {
       display: "flex",
       flexDirection: "row",
       justifyContent: "space-between",
-      backgroundColor: "blue"
+      backgroundColor: "#6bddce",
+      fontSize: 13
     }
   }
 });
