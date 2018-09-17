@@ -22,15 +22,9 @@ const styles = StyleSheet.create({
 const list = [
   {
     id: 1,
-    description: "microsoft",
-    rate: 3.5,
-    quantity: 10
-  },
-  {
-    id: 2,
-    description: "microsoft2",
-    rate: 2.5,
-    quantity: 10
+    description: "Aptamil Gold+ 4 Junior",
+    rate: 170.0,
+    quantity: 1
   }
 ];
 

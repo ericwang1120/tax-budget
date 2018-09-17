@@ -23,7 +23,12 @@ class Invoices extends React.Component {
         key: "description",
         render: text => <a href="">{text}</a>
       },
-      { title: "Rate", dataIndex: "rate", key: "rate" },
+      {
+        title: "Rate",
+        dataIndex: "rate",
+        key: "rate",
+        render: text => (Math.round(text * 100) / 100).toFixed(2)
+      },
       { title: "Quantity", dataIndex: "quantity", key: "quantity" },
       {
         title: "Operation",
