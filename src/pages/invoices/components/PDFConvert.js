@@ -10,7 +10,7 @@ import {
 import MicrosoftYahei from "./Microsoft-Yahei.ttf";
 
 Font.register(
-  "https://github.com/ericwang1120/tax-budget/raw/master/src/pages/invoices/components/Microsoft-Yahei.ttf",
+  "https://raw.githubusercontent.com/ericwang1120/tax-budget/master/src/pages/invoices/components/Microsoft-Yahei.ttf",
   {
     family: "Microsoft-Yahei"
   }
